@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlfamaWEB - LandingPage</title>
+    <!-- Inclusão do CSS do Bootstrap -->
+    <link rel="stylesheet" href="assets/libs/bootstrap5/css/bootstrap.min.css">
+    <!-- Inclusão dos ícones do Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Inclusão do CSS personalizado -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Inclusão da fonte Montserrat do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Inclusão do jQuery -->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <script>
+        // Função para enviar o formulário de contato
+        function sendContact() {
+            if (validateContact()) { // Verifica se o formulário é válido
+                jQuery.ajax({
+                    url: "contact_mail.php",
+                    type: "POST",
+                    data: {
+                        userName: $("#nome").val(),
+                        userEmail: $("#email").val(),
+                        subject: $("#precatorio").val(),
+                        content: $("#processo").val()
+                    },
+                    success: function(data) {
+                        $("#mail-status").html(data); // Exibe o status do envio
+                    },
+                    error: function() {
+                        $("#mail-status").html("Erro ao enviar mensagem."); // Mensagem de erro
+                    }
+                });
+            }
+        }
+
+        // Função para validar o formulário de contato
+        function validateContact() {
+            var valid = true;
+            $(".demoInputBox").css('background-color', ''); // Remove o fundo amarelo
+            $(".info").html(''); // Remove mensagens de erro
+
+            // Validação do nome
+            if (!$("#nome").val()) {
+                $("#userName-info").html("(requerido)");
+                $("#nome").css('background-color', '#FFFFDF');
+                valid = false;
+            }
+
+            // Validação do e-mail
+            var email = $("#email").val();
+            if (!email) {
+                $("#userEmail-info").html("(requerido)");
+                $("#email").css('background-color', '#FFFFDF');
+                valid = false;
+            } else if (!email.match(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/)) {
+                $("#userEmail-info").html("(inválido)");
+                $("#email").css('background-color', '#FFFFDF');
+                valid = false;
+            }
+
+            // Validação do valor do precatório
+            if (!$("#precatorio").val()) {
+                $("#subject-info").html("(requerido)");
+                $("#precatorio").css('background-color', '#FFFFDF');
+                valid = false;
+            }
+
+            // Validação do número do processo
+            if (!$("#processo").val()) {
+                $("#content-info").html("(requerido)");
+                $("#processo").css('background-color', '#FFFFDF');
+                valid = false;
+            }
+
+            return valid; // Retorna o resultado da validação
+        }
+    </script>
+</head>
+<body>
+    <header class="header-menu">
+        <!-- Menu de navegação -->
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <!-- Logo -->
+                <a class="navbar-brand" href="index.html">
+                    <img src="assets/img/alfamaweb_1.png" alt="Logo">
+                </a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#question">Precatórios?</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">A empresa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#how">Como Funciona?</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#faq">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#statement">Depoimentos</a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn btn-warning" href="#number">
+                                <img src="assets/img/icon_Phone_light.png" alt="Ícone de telefone"> (00) 00000-0000
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Seção principal da página -->
+        <section class="home" id="home">
+            <div class="container">
+                <div class="row d-flex align-items-center">
+                    <div class="col1">
+                        <h1 class="text-white">Lorem ipsum dolor sit amet. <strong>Nam vehicula enim dui.</strong></h1>
+                        <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vehicula enim dui. Cras vitae euismod metus.</p>
+                    </div>
+                    <div class="col d-flex justify-content-center">
+                        <img src="assets/img/foto_casalidosos_1.png" class="img-fluid img-bottom" alt="foto1">
+                    </div>
+                    <div class="col-lg-6 col-md-8 col-sm-10 mx-auto d-flex justify-content-end">
+                        <div class="form-container p-4 bg-white">
+                            <h2 class="form-title"><strong>Precisa de nossa ajuda?</strong></h2>
+                            <p class="form-subtitle">Preencha o formulário abaixo e fale conosco.</p>
+                            <form id="frmContact">
+                                <div id="mail-status"></div>
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><img src="assets/img/icon_User.png" width="30" height="30" alt="Ícone de usuário"></span>
+                                        <input type="text" class="form-control demoInputBox" id="nome" name="Nome" placeholder="Nome">
+                                        <span id="userName-info" class="info"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><img src="assets/img/icon_Brasil.png" width="30" height="30" alt="Ícone de Brasil"></span>
+                                        <select class="form-select demoInputBox" id="estado" name="estado">
+                                            <option value="">Selecione um estado</option>
+                                            <!-- Opções de estados do Brasil -->
+                                            <option value="AC">Acre</option>
+                                            <option value="AL">Alagoas</option>
+                                            <option value="AP">Amapá</option>
+                                            <option value="AM">Amazonas</option>
+                                            <option value="BA">Bahia</option>
+                                            <option value="CE">Ceará</option>
+                                            <option value="DF">Distrito Federal</option>
+                                            <option value="ES">Espírito Santo</option>
+                                            <option value="GO">Goiás</option>
+                                            <option value="MA">Maranhão</option>
+                                            <option value="MT">Mato Grosso</option>
+                                            <option value="MS">Mato Grosso do Sul</option>
+                                            <option value="MG">Minas Gerais</option>
+                                            <option value="PA">Pará</option>
+                                            <option value="PB">Paraíba</option>
+                                            <option value="PR">Paraná</option>
+                                            <option value="PE">Pernambuco</option>
+                                            <option value="PI">Piauí</option>
+                                            <option value="RJ">Rio de Janeiro</option>
+                                            <option value="RN">Rio Grande do Norte</option>
+                                            <option value="RS">Rio Grande do Sul</option>
+                                            <option value="RO">Rondônia</option>
+                                            <option value="RR">Roraima</option>
+                                            <option value="SC">Santa Catarina</option>
+                                            <option value="SP">São Paulo</option>
+                                            <option value="SE">Sergipe</option>
+                                            <option value="TO">Tocantins</option>
+                                        </select>
+                                        <span id="estado-info" class="info"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><img src="assets/img/icon_Phone_light.png" width="30" height="30" alt="Ícone de telefone"></span>
+                                        <input type="tel" class="form-control demoInputBox" id="telefone" name="telefone" placeholder="Telefone">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><img src="assets/img/icon_Message_light.png" width="30" height="30" alt="Ícone de mensagem"></span>
+                                        <input type="email" class="form-control demoInputBox" id="email" name="email" placeholder="E-mail">
+                                        <span id="userEmail-info" class="info"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><img src="assets/img/icon_R$.png" width="30" height="30" alt="Ícone de dinheiro"></span>
+                                        <input type="text" class="form-control demoInputBox" id="precatorio" name="precatorio" placeholder="Valor precatório">
+                                        <span id="subject-info" class="info"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><img src="assets/img/icon_R$.png" width="30" height="30" alt="Ícone de dinheiro"></span>
+                                        <input type="text" class="form-control demoInputBox" id="processo" name="numero_processo" placeholder="Número processo">
+                                        <span id="content-info" class="info"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="privacyPolicy">
+                                    <label class="form-check-label" for="privacyPolicy">Aceito a política de privacidade</label>
+                                    <span id="privacyPolicy-info" class="info"></span>
+                                </div>
+                                <button type="button" class="btn btn-primary w-100 text-black btnAction" onClick="sendContact();">ENVIAR</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Botão de WhatsApp -->
+        <button class="icon-button">
+            <img src="assets/img/icon_WhatsApp.png" alt="Ícone de WhatsApp">
+        </button>
+    </header>
+
+    <!-- Inclusão do JavaScript do Bootstrap e do script personalizado -->
+    <script src="assets/libs/bootstrap5/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

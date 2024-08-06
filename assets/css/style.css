@@ -1,0 +1,170 @@
+/* Reset de margens, preenchimento e box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif; /* Certifique-se de que a fonte Montserrat está carregada */
+}
+
+/* Estilo para o menu de cabeçalho */
+.header-menu {
+    background: linear-gradient(45deg, 
+        #003366 25%,   /* Azul escuro */
+        #0066cc 25%,   /* Azul claro */
+        #0066cc 50%,   /* Azul claro */
+        #003366 50%,   /* Azul escuro */
+        #003366 75%,   /* Azul escuro */
+        #0066cc 75%,   /* Azul claro */
+        #0066cc 100%   /* Azul claro */
+    );
+    background-size: 100px 100px; /* Ajuste o tamanho das listras aqui */
+    height: 100vh;
+}
+
+.header-menu a {
+    color: white;
+}
+
+.navbar .navbar-brand:hover {
+    color: white;
+}
+
+.navbar-nav .nav-link {
+    color: white;
+    border-bottom: 2px solid transparent;
+    transition: 0.5s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: white;
+    border-bottom: 2px solid white;
+}
+
+.navbar-nav .nav-item {
+    padding-right: 1.5em;
+}
+
+/* Seção home */
+.home {
+    padding-top: 70px; /* Espaço no topo para o header */
+}
+
+.home .col h1 {
+    font-size: 3rem;
+}
+
+.home .col p {
+    font-size: 1.25rem;
+}
+
+.home .text-white {
+    width: 40%;
+}
+
+/* Efeito de fade in para imagens na seção home */
+.home .col img {
+    max-width: 100%;
+    mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%);
+    -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%); /* Compatibilidade com navegadores WebKit */
+}
+
+/* Estilo para o formulário na seção home */
+.home .form-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 25px rgba(0, 0, 0, 0.15); /* Sombra com dois níveis de desfoque */
+    width: 60%; /* Ajuste a largura aqui */
+    max-width: 500px; /* Define uma largura máxima para o formulário */
+    margin: 0 auto; /* Centraliza o formulário */
+}
+
+.form-container .form-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-container .form-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+/* Estilo para o grupo de inputs */
+.input-group .form-control, 
+.input-group .form-select {
+    background-color: #f0f0f0; /* Cor de fundo */
+    border: 1px solid #ccc; /* Borda */
+    border-radius: 0.25rem; /* Borda arredondada */
+    border-left: none; /* Remove a borda esquerda */
+}
+
+.input-group .form-control:focus, 
+.input-group .form-select:focus {
+    background-color: #e0e0e0; /* Cor de fundo ao focar */
+    border-color: #999; /* Cor da borda ao focar */
+    box-shadow: none; /* Remove a sombra padrão */
+}
+
+.input-group .input-group-text {
+    background-color: #f0f0f0; /* Cor de fundo dos ícones */
+    border: 1px solid #ccc; /* Borda dos ícones */
+    border-right: none; /* Remove a borda direita */
+}
+
+.form-check-label {
+    margin-left: 1.25rem;
+}
+
+/* Estilo para o botão primário */
+.btn-primary {
+    background-color: #F6DE6C;
+    border-color: #F6DE6C;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #ffd500;
+    border-color: #ffd500;
+}
+
+/* Estilo para o botão de ícone (WhatsApp) */
+.icon-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    cursor: pointer;
+    padding: 0;
+}
+
+.icon-button img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 767px) {
+    .home .col {
+        text-align: center;
+    }
+    .home .col img {
+        max-width: 100%;
+    }
+    .home .form-container {
+        width: 90%; /* Ajuste a largura aqui para dispositivos móveis */
+    }
+    .home .text-white {
+        width: 100%; /* Em dispositivos móveis, a coluna "col1" ocupará 100% da largura */
+        text-align: center; /* Centraliza o texto */
+    }
+}
